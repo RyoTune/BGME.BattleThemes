@@ -2,7 +2,7 @@
   "ModId": "BGME.BattleThemes",
   "ModName": "BGME Battle Themes",
   "ModAuthor": "RyoTune",
-  "ModVersion": "2.2.0",
+  "ModVersion": "2.2.1",
   "ModDescription": "Allows multiple mods to add battle themes which will randomly play. Battle themes automatically support Metaphor, P5R, P4G, P3R, and P3P.",
   "ModDll": "BGME.BattleThemes.dll",
   "ModIcon": "Preview.png",
@@ -16,17 +16,6 @@
   "IsLibrary": true,
   "ReleaseMetadataFileName": "BGME.BattleThemes.ReleaseMetadata.json",
   "PluginData": {
-    "GameBananaDependencies": {
-      "IdToConfigMap": {
-        "BGME.Framework.API": {
-          "Config": {
-            "ItemType": "Mod",
-            "ItemId": 477399
-          },
-          "ReleaseMetadataName": "BGME.Framework.API.ReleaseMetadata.json"
-        }
-      }
-    },
     "GitHubDependencies": {
       "IdToConfigMap": {
         "reloaded.sharedlib.hooks": {
@@ -37,12 +26,23 @@
             "AssetFileName": "reloaded.sharedlib.hooks.zip"
           },
           "ReleaseMetadataName": "Sewer56.Update.ReleaseMetadata.json"
+        },
+        "BGME.Framework.API": {
+          "Config": {
+            "UserName": "RyoTune",
+            "RepositoryName": "BGME",
+            "UseReleaseTag": false,
+            "AssetFileName": "Mod.zip"
+          },
+          "ReleaseMetadataName": "BGME.Framework.API.ReleaseMetadata.json"
         }
       }
     },
-    "GameBanana": {
-      "ItemType": "Mod",
-      "ItemId": 488707
+    "GitHubRelease": {
+      "UserName": "RyoTune",
+      "RepositoryName": "BGME.BattleThemes",
+      "UseReleaseTag": false,
+      "AssetFileName": "Mod.zip"
     }
   },
   "IsUniversalMod": false,
