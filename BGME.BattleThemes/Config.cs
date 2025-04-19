@@ -53,6 +53,11 @@ namespace BGME.BattleThemes.Configuration
         [Category("Base BGM ID")]
         [DefaultValue(4000)]
         public int BaseBgmId_Meta { get; set; } = 4000;
+
+        [DisplayName("Shin Megami Tensei V: Vengeance")]
+        [Category("Base BGM ID")]
+        [DefaultValue(4000)]
+        public int BaseBgmId_SMT5V { get; set; } = 4000;
     }
 
     /// <summary>

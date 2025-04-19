@@ -47,22 +47,11 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.2" />
     <PackageReference Include="Reloaded.Mod.Interfaces" Version="2.4.0" ExcludeAssets="runtime" />
     <PackageReference Include="Reloaded.SharedLib.Hooks" Version="1.9.0" />
+    <PackageReference Include="Ryo.Interfaces" Version="2.4.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\BGME.BattleThemes.Interfaces\BGME.BattleThemes.Interfaces.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="VGAudio">
-      <HintPath>libs\VGAudio.dll</HintPath>
-    </Reference>
-    <Reference Include="Yona.Core.Audio">
-      <HintPath>libs\Yona.Core.Audio.dll</HintPath>
-    </Reference>
-    <Reference Include="Yona.Core.Utils">
-      <HintPath>libs\Yona.Core.Utils.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>

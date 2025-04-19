@@ -1,10 +1,13 @@
-﻿using BGME.BattleThemes.Configuration;
+﻿using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+using BGME.BattleThemes.Configuration;
 using BGME.BattleThemes.Interfaces;
 using BGME.BattleThemes.Template;
 using BGME.BattleThemes.Themes;
 using BGME.Framework.Interfaces;
 using Reloaded.Hooks.ReloadedII.Interfaces;
 using Reloaded.Mod.Interfaces;
+using Ryo.Interfaces;
 
 namespace BGME.BattleThemes;
 
@@ -37,6 +40,7 @@ public class Mod : ModBase, IExports
         Log.LogLevel = this.configuration.LogLevel;
 
         this.modLoader.GetController<IBgmeApi>().TryGetTarget(out var bgme);
+        this.modLoader.GetController<IRyoApi>().TryGetTarget(out var ryo);
 
         try
         {
@@ -55,12 +59,9 @@ public class Mod : ModBase, IExports
             }
 
             var modDir = modLoader.GetDirectoryForModId(this.modConfig.ModId);
-            var musicRegistry = new MusicRegistry(this.game, bgme!, this.configuration, modDir, this.modLoader.GetAppConfig().EnabledMods);
+            var musicRegistry = new MusicRegistry(ryo!, game, configuration);
             this.battleThemesService = new(this.modLoader, bgme!, musicRegistry);
             this.modLoader.AddOrReplaceController<IBattleThemesApi>(this.owner, this.battleThemesService);
-
-            var buildDir = Path.Join(modDir, "build");
-            bgme!.BgmeModLoading?.Invoke(new(this.modConfig.ModId, buildDir));
         }
         catch (Exception ex)
         {
@@ -81,6 +82,8 @@ public class Mod : ModBase, IExports
             return Game.P3P_PC;
         else if (appId.Contains("metaphor"))
             return Game.Metaphor;
+        else if (appId.Contains("smt5v"))
+            return Game.SMT5V;
 
         throw new Exception($"Unknown game: {appId}");
     }
@@ -105,11 +108,13 @@ public class Mod : ModBase, IExports
     #endregion
 }
 
+[SuppressMessage("ReSharper", "InconsistentNaming")]
 public enum Game
 {
     P3R_PC,
     P5R_PC,
     P4G_PC,
     P3P_PC,
-    Metaphor
+    Metaphor,
+    SMT5V,
 }

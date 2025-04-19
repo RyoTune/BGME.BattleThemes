@@ -2,8 +2,8 @@
   "ModId": "BGME.BattleThemes",
   "ModName": "BGME Battle Themes",
   "ModAuthor": "RyoTune",
-  "ModVersion": "2.2.1",
-  "ModDescription": "Allows multiple mods to add battle themes which will randomly play. Battle themes automatically support Metaphor, P5R, P4G, P3R, and P3P.",
+  "ModVersion": "3.0.0",
+  "ModDescription": "Allows multiple mods to add battle themes which will randomly play. Battle themes automatically support Metaphor, P5R, P4G, P3R, P3P, and SMT5V.",
   "ModDll": "BGME.BattleThemes.dll",
   "ModIcon": "Preview.png",
   "ModR2RManagedDll32": "x86/BGME.BattleThemes.dll",
@@ -18,6 +18,15 @@
   "PluginData": {
     "GitHubDependencies": {
       "IdToConfigMap": {
+        "BGME.Framework.API": {
+          "Config": {
+            "UserName": "RyoTune",
+            "RepositoryName": "BGME",
+            "UseReleaseTag": false,
+            "AssetFileName": "Mod.zip"
+          },
+          "ReleaseMetadataName": "BGME.Framework.API.ReleaseMetadata.json"
+        },
         "reloaded.sharedlib.hooks": {
           "Config": {
             "UserName": "Sewer56",
@@ -27,14 +36,32 @@
           },
           "ReleaseMetadataName": "Sewer56.Update.ReleaseMetadata.json"
         },
-        "BGME.Framework.API": {
+        "Ryo.Reloaded": {
           "Config": {
             "UserName": "RyoTune",
-            "RepositoryName": "BGME",
+            "RepositoryName": "Ryo",
             "UseReleaseTag": false,
             "AssetFileName": "Mod.zip"
           },
-          "ReleaseMetadataName": "BGME.Framework.API.ReleaseMetadata.json"
+          "ReleaseMetadataName": "Ryo.Reloaded.ReleaseMetadata.json"
+        },
+        "Reloaded.Memory.SigScan.ReloadedII": {
+          "Config": {
+            "UserName": "Reloaded-Project",
+            "RepositoryName": "Reloaded.Memory.SigScan",
+            "UseReleaseTag": false,
+            "AssetFileName": "Mod.zip"
+          },
+          "ReleaseMetadataName": "Reloaded.Memory.SigScan.ReloadedII.ReleaseMetadata.json"
+        },
+        "SharedScans.Reloaded": {
+          "Config": {
+            "UserName": "RyoTune",
+            "RepositoryName": "SharedScans",
+            "UseReleaseTag": false,
+            "AssetFileName": "Mod.zip"
+          },
+          "ReleaseMetadataName": "SharedScans.Reloaded.ReleaseMetadata.json"
         }
       }
     },
@@ -48,7 +75,8 @@
   "IsUniversalMod": false,
   "ModDependencies": [
     "BGME.Framework.API",
-    "reloaded.sharedlib.hooks"
+    "reloaded.sharedlib.hooks",
+    "Ryo.Reloaded"
   ],
   "OptionalDependencies": [],
   "SupportedAppId": [
@@ -56,7 +84,10 @@
     "p3r.exe",
     "p4g.exe",
     "p5r.exe",
-    "metaphor.exe"
+    "metaphor.exe",
+    "smt5v-win64-shipping.exe"
   ],
-  "ProjectUrl": ""
+  "ProjectUrl": "",
+  "CreatorUrl": "",
+  "IsSeparator": false
 }

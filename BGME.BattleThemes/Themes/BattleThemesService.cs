@@ -84,6 +84,7 @@ internal class BattleThemesService : IBattleThemesApi
         if (Directory.Exists(battleThemesDir))
         {
             this.AddPath(config.ModId, battleThemesDir);
+            this.musicRegistry.RegisterModMusic(config.ModId, modDir);
         }
     }
 
