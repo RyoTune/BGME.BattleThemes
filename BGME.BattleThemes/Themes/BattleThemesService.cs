@@ -74,17 +74,20 @@ internal class BattleThemesService : IBattleThemesApi
 
     private void OnModLoading(IModV1 mod, IModConfigV1 config)
     {
+        // Mods using Battle Themes might not have a direct dependency on it,
+        // such as costume mods, which still need their music registered.
+        var modDir = this.modLoader.GetDirectoryForModId(config.ModId);
+        this.musicRegistry.RegisterModMusic(config.ModId, modDir);
+        
         if (!config.ModDependencies.Contains("BGME.BattleThemes"))
         {
             return;
         }
 
-        var modDir = this.modLoader.GetDirectoryForModId(config.ModId);
         var battleThemesDir = Path.Join(modDir, "battle-themes");
         if (Directory.Exists(battleThemesDir))
         {
             this.AddPath(config.ModId, battleThemesDir);
-            this.musicRegistry.RegisterModMusic(config.ModId, modDir);
         }
     }
 

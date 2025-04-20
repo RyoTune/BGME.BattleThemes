@@ -2,7 +2,7 @@
   "ModId": "BGME.BattleThemes",
   "ModName": "BGME Battle Themes",
   "ModAuthor": "RyoTune",
-  "ModVersion": "3.0.0",
+  "ModVersion": "3.0.1",
   "ModDescription": "Allows multiple mods to add battle themes which will randomly play. Battle themes automatically support Metaphor, P5R, P4G, P3R, P3P, and SMT5V.",
   "ModDll": "BGME.BattleThemes.dll",
   "ModIcon": "Preview.png",
