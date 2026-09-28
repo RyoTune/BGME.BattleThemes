@@ -1,19 +1,23 @@
 ﻿using BGME.BattleThemes.Configuration;
+using BGME.BattleThemes.Interfaces;
 using Ryo.Interfaces;
 
 namespace BGME.BattleThemes.Themes;
 
 internal class MusicRegistry(IRyoApi ryo, Game game, Config config)
 {
-    public record ModSong(string ModOwner, string Name, int BgmId);
 
     private readonly string[] _supportedExts = [".hca"];
     private readonly List<ModSong> _music = [];
+    internal readonly Dictionary<string, List<ModSong>> _musicByModId = [];
+
+    internal Dictionary<string, Action<ModSong>> _listeners = new();
 
     public void RegisterModMusic(string modId, string modDir)
     {
         var musicDir = Path.Join(modDir, "battle-themes", "music");
         if (!Directory.Exists(musicDir)) return;
+        _musicByModId.Add(modId, []);
 
         foreach (var file in Directory.EnumerateFiles(musicDir, "*", SearchOption.AllDirectories))
         {
@@ -22,9 +26,15 @@ internal class MusicRegistry(IRyoApi ryo, Game game, Config config)
             var name = Path.GetFileNameWithoutExtension(file);
             var bgmId = GetNextBgmId();
             RegisterRyoSong(file, bgmId);
-            
-            _music.Add(new(modId, name, bgmId));
-            Log.Information($"Registered song: {name} || Mod: {modId} || BGM ID: {bgmId}");
+
+            var NewSong = new ModSong(modId, name, bgmId);
+            _music.Add(NewSong);
+            _musicByModId[modId].Add(NewSong);
+            if (_listeners.TryGetValue(modId, out var Callback))
+            {
+                Callback(NewSong);
+            }
+            Log.Information($"Registered song: {NewSong.Name} || Mod: {NewSong.ModOwner} || BGM ID: {NewSong.BgmId}");
         }
     }
 

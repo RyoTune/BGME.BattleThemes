@@ -72,6 +72,21 @@ internal class BattleThemesService : IBattleThemesApi
         }
     }
 
+    public void OnMusicRegistered(string modId, Action<ModSong> callback)
+    {
+        if (musicRegistry._listeners.TryGetValue(modId, out var existingCallback))
+        {
+            existingCallback += callback;
+        }
+        else
+        {
+            musicRegistry._listeners.Add(modId, callback);
+        }
+    }
+
+    public List<ModSong> GetRegisteredMusic(string modId)
+        => musicRegistry._musicByModId.TryGetValue(modId, out var songs) ? songs : [];
+
     private void OnModLoading(IModV1 mod, IModConfigV1 config)
     {
         // Mods using Battle Themes might not have a direct dependency on it,
